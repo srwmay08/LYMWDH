@@ -24,16 +24,13 @@ body {
 }
 
 .time {
-	position: relative;
 	z-index: -1;
 }
 
 .counter {
 	position: absolute;
-	left: 0;
-	top: 0;
-	right: 10px;
-	bottom: 1%;
+	left: 50%;
+	color: cadetblue;
 }
 
 .clock {
@@ -42,7 +39,9 @@ body {
 
 .quicks {
 	display: flex;
-	padding: 0 0 1% 0;
+	padding: 0 0 8% 0;
+	width: 55%;
+	margin: auto;
 }
 
 .button {
@@ -58,8 +57,8 @@ body {
 }
 
 .large {
-	font-size: 23vh;
-	padding: 2% 0% 2% 0%;
+	font-size: 27vh;
+	padding: 2% 0% 0% 0%;
 }
 
 .calendar {
@@ -106,4 +105,85 @@ body {
 .icons {
 	padding: 2%;
 	font-size: 35px;
+}
+
+.block {
+	display: inline;
+}
+
+// FLIPPER 
+
+/* entire container, keeps perspective */
+
+.flip-container {
+	perspective: 1000px;
+	width: 20%;
+}
+
+
+/* flip the pane when hovered */
+
+.flip-container:hover .flipper,
+.flip-container.hover .flipper {
+	transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+	width: 100%;
+}
+
+
+/* flip speed goes here */
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+	width: inherit;
+}
+
+
+/* hide back of pane during swap */
+
+.front,
+.back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+
+/* front pane, placed above back */
+
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+
+/* back, initially hidden pane */
+
+.back {
+	transform: rotateY(180deg);
+}
+
+.vertical.flip-container {
+	position: relative;
+}
+
+.vertical .back {
+	transform: rotateX(180deg);
+}
+
+.vertical.flip-container .flipper {
+	transform-origin: 100% 213.5px;
+	/* half of height */
+}
+
+.vertical.flip-container:hover .flipper {
+	transform: rotateX(-180deg);
 }

@@ -13,31 +13,37 @@
 
 <body>
 	<div class="container">
+		<script>
+			var activeComponent = null;
+		</script>
 
 
 		<div class="row split header">
-			<div class="zfix icons mesqu options left">
+			<div id="c-button--slide-left" class="c-button zfix icons mesqu options left">
 				<i class="fa fa-cogs" aria - hidden="true"></i>
 			</div>
-			<div class="zfix icons mesq menu right">
+			<div id="c-button--slide-right" class="c-button zfix icons mesq menu right">
 				<i class="fa fa-bars" aria - hidden="true"></i>
 			</div>
+
+			<!-- /c-menu slide-left -->
 			<script>
 				$(document).ready(function () {
 					$(".options").mouseover(function () {
 						$(".options").css("background-color", "yellow");
 					});
 					$(".options").mouseout(function () {
-						$(".options").css("background-color", "lightgray");
+						$(".options").css("background-color", "cadetblue");
 					});
 				});
+
 
 				$(document).ready(function () {
 					$(".menu").mouseover(function () {
 						$(".menu").css("background-color", "yellow");
 					});
 					$(".menu").mouseout(function () {
-						$(".menu").css("background-color", "lightgray");
+						$(".menu").css("background-color", "cadetblue");
 					});
 				});
 			</script>
@@ -73,47 +79,196 @@
 
 
 		<div class="row center quicks">
-			<div class="button square pomodoro">
-				<img src="img/pomodoro.png">
-				<br> Pomodoro
+			<div class="flip-container">
+				<div class="flipper">
+					<div class="fade front button square pomodoro">
+						<img src="img/pomodoro.png">
+						<br> Pomodoro
+					</div>
+					<div class="back">
+						<div class="block">
+							Work Length:
+							<br>
+							<input id="pomhh" type="text" value="0" maxlength="2" size="3"> :
+							<input id="pommm" type="text" value="25" maxlength="2" size="3"> :
+							<input id="pomss" type="text" value="00" maxlength="2" size="3">
+						</div>
+						<br>
+						<div class="block">
+							Break Length:
+							<br>
+							<input id="bhh" type="text" value="0" maxlength="2" size="3"> :
+							<input id="bmm" type="text" value="5" maxlength="2" size="3"> :
+							<input id="bss" type="text" value="00" maxlength="2" size="3">
+						</div>
+						<br>
+						<button id="pombutton" type="button">Start Timer</button>
+					</div>
+				</div>
 			</div>
-			<div class="button square pelko">
-				<img src="img/pelko.png">
-				<br> Pelko
+			<div class="flip-container">
+				<div class="flipper">
+					<div class="fade2 front button square pelko">
+						<img src="img/pelko.png">
+						<br> Pelko
+					</div>
+					<div class="back">
+						Random Alarm Between 0 and Length:
+						<br>
+						<input type="text" value="0" maxlength="2" size="3"> :
+						<input type="text" value="35" maxlength="2" size="3"> :
+						<input type="text" value="00" maxlength="2" size="3">
+						<br>
+						<button type="button">Start Timer</button>
+					</div>
+				</div>
 			</div>
-			<div class="button square alarm">
-				<img src="img/alarmclock.png">
-				<br> Alarm
+			<div class="flip-container">
+				<div class="flipper">
+					<div class="fade3 front button square alarm">
+						<img src="img/alarmclock.png">
+						<br> Alarm
+					</div>
+					<div class="back">
+						<div class="block">
+							Set Future Alarm:
+							<br>
+							<input type="text" value="hh" maxlength="2" size="3"> :
+							<input type="text" value="mm" maxlength="2" size="3"> :
+							<input type="text" value="ss" maxlength="2" size="3">
+						</div>
+						<br>
+						<button type="button">Set Alarm</button>
+					</div>
+				</div>
 			</div>
-			<div class="button square countdown">
-				<img src="img/countdown.png">
-				<br> Count Down
+			<div class="flip-container">
+				<div class="flipper">
+					<div class="fade4 front button square countdown">
+						<img src="img/countdown.png">
+						<br> Count Down
+					</div>
+					<div class="back">
+						<div class="block">
+							Countdown Alarm Timer
+							<br>
+							<input type="text" value="hh" maxlength="2" size="3"> :
+							<input type="text" value="mm" maxlength="2" size="3"> :
+							<input type="text" value="ss" maxlength="2" size="3">
+						</div>
+						<br>
+						<button type="button">Start Timer</button>
+					</div>
+				</div>
 			</div>
-			<div class="button square stopwatch">
-				<img src="img/stopwatch.png">
-				<br> Stop Watch
+			<div class="flip-container">
+				<div class="flipper">
+					<div class="fade5 front button square stopwatch">
+						<img src="img/stopwatch.png">
+						<br> Stop Watch
+					</div>
+					<div class="back">
+						Timer Starts Instantly
+						<br>
+						<button type="button">Start</button>
+						<button type="button">Pause</button>
+						<button type="button">Split</button>
+						<br>
+						<button type="button">Reset</button>
+					</div>
+				</div>
 			</div>
-			<div class="button square cal">
-				<img src="img/calendar.png">
-				<br> Calendar
+			<div class="flip-container">
+				<div class="flipper">
+					<div class="fade5 front button square cal">
+						<img src="img/calendar.png">
+						<br> Calendar
+					</div>
+					<div class="back">
+						<img src="img/calendar.png">
+						<br> Calendar
+					</div>
+				</div>
 			</div>
 
 			<script>
+				$(document).ready(function () {
+					$(".fade").hide(0).delay(0).fadeIn(1000);
+					$(".fade2").hide(0).delay(50).fadeIn(1250);
+					$(".fade3").hide(0).delay(100).fadeIn(1450);
+					$(".fade4").hide(0).delay(150).fadeIn(1600);
+					$(".fade5").hide(0).delay(200).fadeIn(1700);
+				});
+
 				$(document).ready(function () {
 					$(".pomodoro").mouseover(function () {
 						$(".pomodoro").css("background-color", "yellow");
 					});
 					$(".pomodoro").mouseout(function () {
-						$(".pomodoro").css("background-color", "lightgray");
+						$(".pomodoro").css("background-color", "cadetblue");
 					});
+
+
 				});
+
+				$("#pombutton").click(function () {
+					var pomhh = $("#pomhh").val();
+					var pommm = $("#pommm").val();
+					var pomss = $("#pomss").val();
+					var bhh = $("#bhh").val();
+					var bmm = $("#bmmm").val();
+					var bss = $("#bmss").val();
+					$("#date").html("");
+					activeComponent = PomodoroTimer(pomhh, pommm, pomss, bhh, bmm, bss);
+					$("#date").html(activeComponent);
+				});
+
+
+				function PomodoroTimer(workH, workM, workS, breakH, breakM, breakS) {
+					this.workTime = moment.duration(workH + ":" + workM + ":" + workS);
+					this.breakTime = moment.duration(breakH + ":" + breakM + ":" + breakS);
+
+					this.WAITING = 0;
+					this.WORKING = 1;
+					this.BREAKING = 2;
+
+					this.endTime = null;
+					this.state = this.WAITING;
+
+					function onStartClick(evt) {
+						this.endTime = moment().add(workTime);
+						document.getElementById("date").innerHTML
+					}
+
+					function onTimerEnd() {
+						if (this.state == this.WORKING) {
+							this.state = this.BREAKING;
+							this.endTime = moment().add(breakTime);
+						} else if (this.state == this.BREAKING) {
+							this.state = this.WORKING;
+							this.endTime = moment().add(workTime);
+						}
+					};
+
+
+					function update() {
+						if (!endTime) {
+							return;
+						}
+						var currentTime = moment();
+						if (currentTime.isAfter(endTime) || currentTime.isSame(endTime)) {
+							onTimerEnd();
+						}
+					}
+				}
+
 
 				$(document).ready(function () {
 					$(".pelko").mouseover(function () {
-						$(".pelko").css("background-color", "yellow");
+						$(".pelko").css("background-color", "yellow").style("display");
 					});
 					$(".pelko").mouseout(function () {
-						$(".pelko").css("background-color", "lightgray");
+						$(".pelko").css("background-color", "cadetblue").style("none");
 					});
 				});
 
@@ -122,7 +277,7 @@
 						$(".alarm").css("background-color", "yellow");
 					});
 					$(".alarm").mouseout(function () {
-						$(".alarm").css("background-color", "lightgray");
+						$(".alarm").css("background-color", "cadetblue");
 					});
 				});
 
@@ -131,7 +286,7 @@
 						$(".countdown").css("background-color", "yellow");
 					});
 					$(".countdown").mouseout(function () {
-						$(".countdown").css("background-color", "lightgray");
+						$(".countdown").css("background-color", "cadetblue");
 					});
 				});
 
@@ -140,7 +295,7 @@
 						$(".stopwatch").css("background-color", "yellow");
 					});
 					$(".stopwatch").mouseout(function () {
-						$(".stopwatch").css("background-color", "lightgray");
+						$(".stopwatch").css("background-color", "cadetblue");
 					});
 				});
 
@@ -149,12 +304,16 @@
 						$(".cal").css("background-color", "yellow");
 					});
 					$(".cal").mouseout(function () {
-						$(".cal").css("background-color", "lightgray");
+						$(".cal").css("background-color", "cadetblue");
 					});
 				});
 			</script>
-
 		</div>
+
+
+
+
+
 		<div class="overflow center">
 			<div class="month"> Month
 			</div>
@@ -182,9 +341,51 @@
 		</div>
 		<div class="footer center"> F / T / L </div>
 
+		<script>
+			activeComponent = new Clock;
 
+			function Clock() {
+				this.datetime = null;
+				this.date = null;
 
+				var update = function () {
+					date = moment(new Date())
+					datetime.html(date.format('h:mm:ss'));
+				};
 
+				$(document).ready(function () {
+					datetime = $('#date')
+					update();
+					setInterval(update, 1000);
+				});
+			};
+
+			function Pomodoro() {
+
+			};
+
+			function Pelko() {
+
+			};
+
+			function Alarm() {
+
+			};
+
+			function Count() {
+
+			};
+
+			function Stopwatch() {
+
+			};
+
+			function Calendar() {
+
+			};
+
+			setInterval(activeComponent.update, 1000);
+		</script>
 
 </body>
 
